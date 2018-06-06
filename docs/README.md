@@ -69,6 +69,7 @@ That's it! You are now ready to customize your own intelligent personal assistan
 - Visit our [website](https://brain-ai.github.io) and read the complete project [documentation](https://brain-ai.github.io/documentation).
 - View the project [release notes](https://github.com/brain-ai/brain/releases).
 - Say hi to the [community](https://gitter.im/brain-ai)!
+- Brain.ai is a fork of [Kalliope](https://github.com/kalliope-project/kalliope). Don't forget to visit and star Kalliope!
 
 # Get Involved!
 
