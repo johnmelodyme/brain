@@ -1,0 +1,121 @@
+---
+# ---------------------------
+# Assistant default settings
+# Use YAML syntax
+# ---------------------------
+
+# ---------------------------
+# Trigger
+# ---------------------------
+# This is the trigger that will catch your magic work to wake up the assistant
+default_trigger: "snowboy"
+
+# Trigger engine configuration
+# Available engine are:
+# - snowboy
+triggers:
+  - snowboy:
+      pmdl_file: "trigger/snowboy/resources/brain-FR-6samples.pmdl"
+
+
+# ---------------------------
+# Speech to text
+# ---------------------------
+
+# This is the STT that will be used by default
+default_speech_to_text: "google"
+
+speech_to_text:
+  - google:
+      language: "fr-FR"
+
+
+# ---------------------------
+# Text to speech
+# ---------------------------
+# This is the default TTS that will be used by the assistant to talk.
+default_text_to_speech: "pico2wave"
+# where we store generated audio files from TTS engine to reuse them
+cache_path: "/tmp/brain_tts_cache"
+
+text_to_speech:
+  - pico2wave:
+      language: "fr-FR"
+      cache: True
+  - googletts:
+      language: "fr"
+      cache: True
+
+# ---------------------------
+# players
+# ---------------------------
+# This is the sound player that will be used by default
+default_player: "mplayer"
+
+# players configuration
+# Available engine are:
+# - mplayer
+# - pyalsaaudio
+# - pyaudioplayer
+# - sounddeviceplayer
+players:
+  - mplayer: {}
+  - pyalsaaudio:
+     device: "default"
+
+
+
+# ---------------------------
+# Rest API
+# ---------------------------
+rest_api:
+  active: True
+  port: 5000
+  password_protected: True
+  login: admin
+  password: secret
+  allowed_cors_origin: False
+
+# ---------------------------
+# Hooks
+# ---------------------------
+hooks:
+  on_start:
+    - "on-start-synapse"
+    - "bring-led-on"
+  on_waiting_for_trigger: "test"
+  on_triggered:
+    - "on-triggered-synapse"
+  on_start_listening:
+  on_stop_listening:
+  on_order_found:
+  on_order_not_found:
+    - "order-not-found-synapse"
+  on_processed_synapses:
+  on_deaf: []
+  on_undeaf: []
+  on_mute: []
+  on_unmute: []
+  on_start_speaking:
+  on_stop_speaking:
+
+# ---------------------------
+# resource directory path
+# ---------------------------
+resource_directory:
+  neuron: "/tmp/brain/tests/brain_resources_dir/neurons"
+  stt: "/tmp/brain/tests/brain_resources_dir/stt"
+  tts: "/tmp/brain/tests/brain_resources_dir/tts"
+  trigger: "/tmp/brain/tests/brain_resources_dir/trigger"
+
+# ---------------------------
+# Global files variables
+# /!\ If a variable is defined in different files, the last file defines the value.
+# ---------------------------
+var_files:
+  - "../tests/settings/variables.yml"
+
+options:
+  deaf: True
+  mute: False
+  energy_threshold: 3000

@@ -8,11 +8,6 @@ from os import path
 
 basedir = path.abspath(path.dirname(__file__))
 
-# Get the long description from the README file
-with open(path.join(basedir, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
-
-
 # locate our version number
 def read_version_py(file_name):
     try:
@@ -25,28 +20,24 @@ def read_version_py(file_name):
         if mo:
             return mo.group(1)
 
-VERSION_PY_FILENAME = 'kalliope/_version.py'
+VERSION_PY_FILENAME = 'brain/_version.py'
 version = read_version_py(VERSION_PY_FILENAME)
 
-py2_prefix = ''
-if sys.version_info[0] < 3:
-    py2_prefix = 'python2-'
-
 setup(
-    name='kalliope',
+    name='brain-ai',
     version=version,
-    description='Kalliope is a modular always-on voice controlled personal assistant designed for home automation.',
-    long_description=long_description,
-    url='https://github.com/kalliope-project/kalliope',
-    author='The dream team of Kalliope-project',
-    author_email='kalliope-project@googlegroups.com',
-    license='MIT',
-    # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
+    description='Build your own intelligent personal assistant.',
+    long_description='Brain.ai is an open source intelligent personal assistant development package.',
+    url='https://github.com/brain-ai/brain',
+    author='Alexander Paul P. Quinit',
+    author_email='paulquinit@gmail.com',
+    license='GNU General Public License v3 (GPLv3)',
+
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
@@ -58,12 +49,10 @@ setup(
         'Topic :: Multimedia :: Sound/Audio :: Sound Synthesis',
         'Topic :: Scientific/Engineering :: Artificial Intelligence'
     ],
-    keywords='assistant bot TTS STT jarvis',
+    keywords='assistant bot TTS STT brain',
 
-    # included packages
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    packages=find_packages(exclude=['docs', 'tests']),
 
-    # required libs
     install_requires=[
         'pyyaml>=3.12',
         'six>=1.10.0',
@@ -94,12 +83,8 @@ setup(
         'voicerss_tts>=1.0.3'
     ],
 
-
-    # additional files
     package_data={
-        'kalliope': [
-            'brain.yml',
-            'settings.yml',
+        'brain': [
             'trigger/snowboy/armv7l/python27/_snowboydetect.so',
             'trigger/snowboy/x86_64/python27/_snowboydetect.so',
             'trigger/snowboy/x86_64/python34/_snowboydetect.so',
@@ -110,10 +95,9 @@ setup(
          ],
     },
 
-    # entry point script
     entry_points={
         'console_scripts': [
-            'kalliope=kalliope:main',
+            'brain=brain:main',
         ],
     },
 )

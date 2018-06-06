@@ -1,0 +1,33 @@
+---
+  - name: "test"
+    signals:
+      - order: "test_order"
+    neurons:
+      - say:
+          message:
+            - "test message"
+
+  - name: "test2"
+    signals:
+      - order: "bonjour"
+    neurons:
+      - say:
+          message:
+            - "test message"
+  
+  - includes:
+    - included_brain_test.yml
+
+  - name: "test4"
+    signals:
+      - order: "test_order_with_parameter"
+    neurons:
+      - say:
+          message:
+            - "test message {{ parameter1 }}"
+
+  - name: "order-not-found-synapse"
+    signals: []
+    neurons:
+      - say:
+          message: "order not found"

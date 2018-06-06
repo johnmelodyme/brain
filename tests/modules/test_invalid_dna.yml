@@ -1,0 +1,10 @@
+---
+  name: "neuron_test"
+  type: "non existing"
+  author: "Alexander Paul P. Quinit"
+
+  brain_supported_version:
+    - 0.1
+
+  tags:
+    - "test"
